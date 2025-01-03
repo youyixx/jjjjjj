@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左右布局示例</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .left {
+            flex: 3;
+            background-color: #f0f0f0;
+            padding: 20px;
+            position: relative; /* 使子元素可以绝对定位 */
+            background-image: url("bj1.png"); /* 添加背景图片 */
+            background-size: cover; /* 使背景图片覆盖整个区域 */
+            background-position: center; /* 使背景图片居中 */
+            background-repeat: no-repeat; /* 防止背景图片平铺 */
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
+            background-image: url("bj2.png"); /* 添加背景图片 */
+            background-size: cover; /* 使背景图片覆盖整个区域 */
+            background-position: center; /* 使背景图片居中 */
+            background-repeat: no-repeat; /* 防止背景图片平铺 */
+        }
+        .right button {
+            margin: 40px; /* 按钮之间的距离扩大两倍 */
+            padding: 20px 40px; /* 按钮大小扩大两倍 */
+            font-size: 32px; /* 字体大小扩大两倍 */
+            border: 3px solid blue; /* 边框加粗并改为蓝色 */
+            border-radius: 10px; /* 边框圆角 */
+            transition: transform 0.3s, background-color 0.3s; /* 添加过渡效果 */
+        }
+        .right button:hover {
+            transform: scale(2); /* 鼠标悬停时按钮扩大1倍 */
+            background-color: yellow; /* 鼠标悬停时背景颜色变成黄色 */
+        }
+        .left .return-button {
+            position: absolute;
+            bottom: 20px; /* 距离底部20px */
+            left: 20px; /* 距离左边20px */
+            margin: 0; /* 去掉默认的margin */
+            padding: 10px 20px; /* 按钮大小为右区域按钮的一半 */
+            font-size: 16px; /* 字体大小为右区域按钮的一半 */
+            border: 3px solid blue; /* 边框加粗并改为蓝色 */
+            border-radius: 10px; /* 边框圆角 */
+            transition: transform 0.3s, background-color 0.3s; /* 添加过渡效果 */
+        }
+        .left .return-button:hover {
+            transform: scale(2); /* 鼠标悬停时按钮扩大1倍 */
+            background-color: yellow; /* 鼠标悬停时背景颜色变成黄色 */
+        }
+        .image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; /* 设置图片容器宽度为原来的2倍 */
+            height: 400px; /* 设置图片容器高度为原来的2倍 */
+            overflow: hidden; /* 隐藏溢出部分 */
+            border: 5px solid black; /* 添加粗黑色边框 */
+            border-radius: 15px; /* 添加圆角 */
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            transition: transform 1s, opacity 1s; /* 设置过渡效果 */
+        }
+        .image-container img:hover {
+            transform: scale(1.2); /* 鼠标悬停时图片保持原大小 */
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <div class="image-container">
+            <img id="image" src="C:\Users\王晓阳\Desktop\web页面2\th1.png" alt="展示图片">
+        </div>
+        <button class="return-button" onclick="window.location.href='https://wrfwzt.github.io/ex2/'">返回</button>
+    </div>
+    <div class="right">
+        <button onclick="window.location.href='https://2246822744.github.io/nihao/'">售卖</button>
+        <button onclick="window.location.href='https://wrfwzt.github.io/interact/'">猜谜</button>
+        <button onclick="window.location.href='https://wrfwzt.github.io/photo/'">集邮</button>
+    </div>
+    <script>
+        const images = [
+            "th1.png",
+            "th2.png",
+            "th3.png",
+            "th4.png",
+            "th5.png"
+        ];
+        let currentIndex = 0;
+
+        function changeImage() {
+            const imgElement = document.getElementById('image');
+            currentIndex = (currentIndex + 1) % images.length;
+            imgElement.style.opacity = 0; // 设置透明度为0开始过渡
+            setTimeout(() => {
+                imgElement.src = images[currentIndex];
+                imgElement.style.opacity = 1; // 设置透明度为1结束过渡
+            }, 1000); // 等待1秒过渡完成后再更换图片
+        }
+
+        setInterval(changeImage, 3000); // 每3秒更换一次图片
+    </script>
+</body>
+</html>
